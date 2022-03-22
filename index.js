@@ -22,16 +22,16 @@ async function run() {
                   const usersCollection = database.collection('users');
 
                   // get news
-                 app.get('/news', async(req, res) =>{
+                app.get('/news', async(req, res) =>{
                 const result = await newsCollection.find({}).toArray();
                 res.json(result);
                 });
                 //save user to the database
-              app.post('/users', async(req, res)=>{
+               app.post('/users', async(req, res)=>{
                 const user = req.body;
                 const result = await usersCollection.insertOne(user);
                 res.json(result);
-                console.log(result)
+                console.log(req.body)
               });
               //verify admin
               app.get('/users/:email', async(req, res)=>{
@@ -74,5 +74,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`app listening at http://localhost:${port}`)
 })
